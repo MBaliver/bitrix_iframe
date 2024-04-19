@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Служит для отдачи статических файлов, находящихся в директории public
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 ///bitrix24-webhook
 app.post('/bitrix24-webhook', (req, res) => {
     // Получаем данные POST-запроса
@@ -17,5 +17,21 @@ app.post('/bitrix24-webhook', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
 
+app.get("/",(req,res)=>{
+    res.send(
+        `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Страница Test</title>
+    </head>
+    <body>
+      <h1>Test page</h1>
+    </body>
+    </html>
+  `
+    )
+})
 
-app.listen(3000, () => console.log('Server running at http://localhost:3000/'));
+
+app.listen(3000, () => console.log(`Server running at ${PORT}`));
