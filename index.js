@@ -1,10 +1,13 @@
 
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // Служит для отдачи статических файлов, находящихся в директории public
 //app.use(express.static(path.join(__dirname, 'public')));
 ///bitrix24-webhook
@@ -34,4 +37,4 @@ app.get("/",(req,res)=>{
 })
 
 
-app.listen(3000, () => console.log(`Server running at ${PORT}`));
+app.listen(PORT, () => console.log(`Server running at ${PORT}`));
